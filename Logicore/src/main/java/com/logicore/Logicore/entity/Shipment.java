@@ -37,4 +37,8 @@ public class Shipment {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ShipmentPriority priority;
+
+    // Soft delete flag: false = active, true = deleted
+    @Column(nullable = false)
+    private boolean deleted = false;
 }

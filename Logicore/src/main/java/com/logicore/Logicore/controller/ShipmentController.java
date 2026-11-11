@@ -4,6 +4,7 @@ package com.logicore.Logicore.controller;
 import com.logicore.Logicore.dto.ShipmentRequestDTO;
 import com.logicore.Logicore.dto.ShipmentResponseDTO;
 import com.logicore.Logicore.dto.ShipmentStatusRequestDTO;
+import com.logicore.Logicore.dto.ShipmentTrackingHistoryResponseDTO;
 import com.logicore.Logicore.enums.ShipmentPriority;
 import com.logicore.Logicore.enums.ShipmentStatus;
 import com.logicore.Logicore.mapper.ShipmentMapper;
@@ -188,6 +189,14 @@ public class ShipmentController {
                         origin,
                         pageable
                 );
+
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/{id}/history")
+    public ResponseEntity<List<ShipmentTrackingHistoryResponseDTO>> getShipmentTrackingHistory(
+            @PathVariable Long id
+    ){
+        List<ShipmentTrackingHistoryResponseDTO> response = shipmentService.getShipmentTrackingHistory(id);
 
         return ResponseEntity.ok(response);
     }

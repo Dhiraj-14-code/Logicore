@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface ShipmentRepository extends JpaRepository<Shipment,Long> ,JpaSpecificationExecutor<Shipment>{
     boolean existsByTrackingNumber(String trackingNumber );
     boolean existsByTrackingNumberAndIdNot(String trackingNumber , Long id);
@@ -19,4 +21,6 @@ public interface ShipmentRepository extends JpaRepository<Shipment,Long> ,JpaSpe
             String origin,
             Pageable pageable
     );
+    List<Shipment> findByDeletedFalse();
+    Page<Shipment> findByDeletedFalse(Pageable pageable);
 }
